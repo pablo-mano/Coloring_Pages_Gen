@@ -24,9 +24,10 @@ A Python tool that generates creative coloring book prompts and organizes them f
    ```
 
 ## Setup
-Create a `.env` file in the project root with your OpenAI API key:
-```
-OPENAI_API_KEY=your_openai_api_key_here
+Copy the `.env.example` file to `.env` and add your OpenAI API key:
+```sh
+cp .env.example .env
+# Then edit .env to add your real OpenAI API key
 ```
 
 ## Usage
