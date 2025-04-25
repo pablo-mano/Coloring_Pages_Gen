@@ -40,6 +40,21 @@ python generate_coloring_book.py --topic "Dinosaurs" --n 5
 
 The generated prompts and results will be saved in the `colourings/` folder, organized by theme and timestamp.
 
+## Demo Video
+
+You can see a demo of the Coloring Pages Generator in action below:
+
+[Download/Watch the video](doc/Coloring_Pages_Gen.mp4)
+
+<!-- If viewing on GitHub, the video may not play inline. Download or open the link to watch. If your markdown viewer supports HTML, you can use the embed below: -->
+
+<details>
+<summary>Click to expand video embed (may not work on GitHub)</summary>
+
+<video src="doc/Coloring_Pages_Gen.mp4" controls width="600"></video>
+
+</details>
+
 ## Example
 ```
 python generate_coloring_book.py --topic "Underwater Adventure" --n 3
