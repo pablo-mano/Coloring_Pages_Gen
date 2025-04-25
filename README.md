@@ -1,5 +1,9 @@
 # Coloring Pages Generator
 
+<p align="center">
+  <img src="doc/key_visual.png" alt="Key Visual: Example Coloring Page" width="400">
+</p>
+
 A Python tool that generates creative coloring book prompts and organizes them for you. It uses OpenAI's models to create unique, concise prompts for coloring pages, and saves the results in organized folders.
 
 ## Features
