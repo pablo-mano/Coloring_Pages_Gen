@@ -35,10 +35,10 @@ Run the script from the command line. Example:
 ```sh
 python generate_coloring_book.py --topic "Dinosaurs" --n 5
 ```
-- `--topic` (or `-t`): The main theme for the coloring book prompts
-- `--n`: Number of prompt variations to generate
+- `--topic` (or `-t`): The main theme for the coloring book
+- `--n`: Number of pages of colouring book
 
-The generated prompts and results will be saved in the `colourings/` folder, organized by theme and timestamp.
+The generated images and book will be saved in the `colourings/` folder, organized by theme and timestamp.
 
 ## Demo Video
 
