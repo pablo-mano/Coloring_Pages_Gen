@@ -23,3 +23,9 @@
 - [ ] Set up Stripe (or other) test account
 - [ ] Integrate payment initiation and webhook handling in backend
 - [ ] Connect payment flow between frontend and backend
+
+## 6. Deploy and Test Application
+- [x] Deploy frontend to a public URL (e.g., Netlify, Vercel)
+- [ ] Deploy backend to a public URL (e.g., Render, Railway, Heroku)
+- [x] Add password protection or access restriction for demo/testing
+- [ ] Test deployed site end-to-end (frontend + backend integration)
