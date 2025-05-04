@@ -71,12 +71,12 @@
 
 ```mermaid
 flowchart TD
-    A[Frontend (React)]
-    B[Backend API (Node/FastAPI)]
-    C[Database]
-    D[Payment Provider (Stripe/PayPal)]
-    E[Coloring Page Generator]
-    F[Cloud Storage (S3, GCS, etc.)]
+    A["Frontend (React)"]
+    B["Backend API (Node/FastAPI)"]
+    C["Database"]
+    D["Payment Provider (Stripe/PayPal)"]
+    E["Coloring Page Generator"]
+    F["Cloud Storage (S3, GCS, etc.)"]
 
     A --> B
     B --> C
