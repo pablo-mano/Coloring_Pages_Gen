@@ -8,7 +8,49 @@ import Payment from "./pages/Payment";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 
+import React, { useState } from "react";
+import { TextField } from "@mui/material";
+
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const DEMO_PASSWORD = "test123";
+
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    if (password === DEMO_PASSWORD) {
+      setAuthenticated(true);
+      setError("");
+    } else {
+      setError("Incorrect password. Please try again.");
+    }
+  };
+
+  if (!authenticated) {
+    return (
+      <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", bgcolor: "#f7cac9" }}>
+        <Box sx={{ p: 4, bgcolor: "white", borderRadius: 3, boxShadow: 3, minWidth: 320 }}>
+          <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>Demo Access</Typography>
+          <form onSubmit={handlePasswordSubmit}>
+            <TextField
+              type="password"
+              label="Enter password"
+              variant="outlined"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              fullWidth
+              sx={{ mb: 2 }}
+              autoFocus
+            />
+            {error && <Typography color="error" sx={{ mb: 1 }}>{error}</Typography>}
+            <Button type="submit" variant="contained" color="primary" fullWidth>Access Demo</Button>
+          </form>
+        </Box>
+      </Box>
+    );
+  }
+
   return (
     <Router>
       <Box

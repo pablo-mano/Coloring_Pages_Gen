@@ -13,9 +13,26 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
     sys.stderr.reconfigure(encoding='utf-8')
 
-# Load OpenAI API key from .env or environment
-env_vars = dotenv_values(".env")
-api_key = env_vars.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+# Load OpenAI API key from backend/.env, .env, or environment
+from pathlib import Path
+
+def load_api_key():
+    # Try backend/.env
+    backend_env = Path(__file__).parent / ".env"
+    if backend_env.exists():
+        env_vars = dotenv_values(str(backend_env))
+        if env_vars.get("OPENAI_API_KEY"):
+            return env_vars.get("OPENAI_API_KEY")
+    # Try project root .env
+    root_env = Path(__file__).parent.parent / ".env"
+    if root_env.exists():
+        env_vars = dotenv_values(str(root_env))
+        if env_vars.get("OPENAI_API_KEY"):
+            return env_vars.get("OPENAI_API_KEY")
+    # Fallback to environment
+    return os.getenv("OPENAI_API_KEY")
+
+api_key = load_api_key()
 client = OpenAI(api_key=api_key)
 
 def generate_variations(main_prompt, n):
@@ -37,6 +54,7 @@ def generate_variations(main_prompt, n):
             'as a JSON array. Example: {"prompts" : ["prompt 1", "prompt 2", "prompt 3" ]}'
         )}
     ]
+    content = ""
     try:
         response = client.chat.completions.create(
             model="gpt-4.1-nano",
@@ -54,7 +72,7 @@ def generate_variations(main_prompt, n):
             raise ValueError(f"Unexpected response format from GPT-4o: {data}")
         print(f"✔ Successfully generated {len(prompts)} prompt variations.")
     except Exception as e:
-        print(f"✖ Error parsing prompts from GPT-4o: {e}\nRaw content: {content if 'content' in locals() else ''}")
+        print(f"✖ Error parsing prompts from GPT-4o: {e}\nRaw content: {content}")
         # Fallback: try extracting prompts from lines
         prompts = [line.strip("- ").strip() for line in content.splitlines() if line.strip()]
         print(f"[WARN] Fallback: extracted {len(prompts)} prompt(s) from raw content.")
