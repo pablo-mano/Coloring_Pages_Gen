@@ -5,9 +5,9 @@
 - [x] Create directory structure for generation engine and cloud storage integration
 
 ## 2. Bootstrap the Frontend
-- [ ] Scaffold React or Next.js project
-- [ ] Create basic pages: Home, Generator, Payment/Checkout, Dashboard, Authentication
-- [ ] Set up navigation between pages
+- [x] Scaffold React or Next.js project
+- [x] Create basic pages: Home, Generator, Payment/Checkout, Dashboard, Authentication
+- [x] Set up navigation between pages
 
 ## 3. Bootstrap the Backend API
 - [ ] Scaffold backend project (Node.js/Express/NestJS or Python/FastAPI/Django)
