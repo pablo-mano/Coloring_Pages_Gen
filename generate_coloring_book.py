@@ -57,7 +57,7 @@ def generate_variations(main_prompt, n):
     content = ""
     try:
         response = client.chat.completions.create(
-            model="gpt-4.1-nano",
+            model="gpt-4o-mini",
             messages=messages,
             response_format={"type": "json_object"}
         )
@@ -138,10 +138,10 @@ if __name__ == "__main__":
         try:
             # Generate image using OpenAI API
             result = client.images.generate(
-                model="gpt-image-1",
+                model="dall-e-3",
                 prompt=prompt,
-                quality="auto",
-                size="1024x1536",
+                quality="standard",
+                size="1024x1024",
                 n=1
             )
             image_base64 = result.data[0].b64_json

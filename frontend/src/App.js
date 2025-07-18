@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppBar, Toolbar, Button, IconButton, Typography, Box, Container } from "@mui/material";
+import { AppBar, Toolbar, Button, IconButton, Typography, Box, Container, TextField } from "@mui/material";
 import PaletteIcon from '@mui/icons-material/Palette';
 import Home from "./pages/Home";
 import Generator from "./pages/Generator";
@@ -8,18 +8,14 @@ import Payment from "./pages/Payment";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 
-import React, { useState } from "react";
-import { TextField } from "@mui/material";
-
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const DEMO_PASSWORD = "test123";
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    if (password === DEMO_PASSWORD) {
+    if (password === process.env.REACT_APP_DEMO_PASSWORD || password === "test123") {
       setAuthenticated(true);
       setError("");
     } else {

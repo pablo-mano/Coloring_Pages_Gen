@@ -18,14 +18,29 @@ const { generateColoringPages } = require('./generate');
 
 app.post('/generate', async (req, res) => {
   const { theme, count } = req.body;
-  if (!theme) {
-    return res.status(400).json({ error: 'Missing theme in request body' });
+  
+  // Input validation
+  if (!theme || typeof theme !== 'string') {
+    return res.status(400).json({ error: 'Missing or invalid theme in request body' });
   }
+  
+  if (theme.length > 100) {
+    return res.status(400).json({ error: 'Theme must be less than 100 characters' });
+  }
+  
+  // Sanitize theme to prevent command injection
+  const sanitizedTheme = theme.replace(/[;&|`$<>]/g, '');
+  
+  if (count && (!Number.isInteger(count) || count < 1 || count > 10)) {
+    return res.status(400).json({ error: 'Count must be an integer between 1 and 10' });
+  }
+  
   try {
-    const { stdout, outputDir } = await generateColoringPages(theme, count || 1);
+    const { stdout, outputDir } = await generateColoringPages(sanitizedTheme, count || 1);
     res.json({ success: true, outputDir, log: stdout });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error('Generation error:', err);
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
 });
 
