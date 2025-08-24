@@ -21,8 +21,8 @@ The project has three main components:
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Generate coloring pages
-python generate_coloring_book.py --topic "Dinosaurs" --n 5
+# Generate coloring pages (default: 3 pages)
+python generate_coloring_book.py --topic "Dinosaurs" --number-of-pages 5
 ```
 
 ### Frontend Development

@@ -8,17 +8,26 @@ const path = require('path');
 function generateColoringPages(theme, count = 1) {
   return new Promise((resolve, reject) => {
     const scriptPath = path.resolve(__dirname, '../generate_coloring_book.py');
-    const args = ['-t', theme, '-n', String(count)];
-    const pythonProcess = spawn('python', [scriptPath, ...args], { encoding: 'utf-8' });
+    const args = ['-t', theme, '--number-of-pages', String(count)];
+    const pythonProcess = spawn('python', [scriptPath, ...args], { 
+      encoding: 'utf-8',
+      stdio: ['pipe', 'pipe', 'pipe']
+    });
 
     let stdout = '';
     let stderr = '';
 
     pythonProcess.stdout.on('data', (data) => {
-      stdout += data.toString();
+      const output = data.toString();
+      stdout += output;
+      // Forward output to console for real-time monitoring
+      process.stdout.write(output);
     });
     pythonProcess.stderr.on('data', (data) => {
-      stderr += data.toString();
+      const output = data.toString();
+      stderr += output;
+      // Forward errors to console for real-time monitoring
+      process.stderr.write(output);
     });
     pythonProcess.on('close', (code) => {
       if (code === 0) {

@@ -3,6 +3,7 @@ import { Box, Typography, TextField, Button, CircularProgress } from "@mui/mater
 
 const Generator = () => {
   const [prompt, setPrompt] = useState("");
+  const [pages, setPages] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
 
